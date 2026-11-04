@@ -1,11 +1,6 @@
 ---
-import { getImage } from 'astro:assets';
-import storePhoto from '../assets/IMG_3528.JPG';
-import { site } from '../data/site';
+import Seo from '../components/Seo.astro';
 import '../styles/global.css';
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
-const og = await getImage({ src: storePhoto, width: 783, format: 'jpg', quality: 90 });
-const ogUrl = Astro.site ? new URL(og.src, Astro.site).href : undefined;
 ---
 <!doctype html>
 <html lang="ja">
@@ -13,17 +8,7 @@ const ogUrl = Astro.site ? new URL(og.src, Astro.site).href : undefined;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0d0d12" />
-    <title>{site.title}</title>
-    <meta name="description" content={site.description} />
-    {canonical && <link rel="canonical" href={canonical} />}
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="ja_JP" />
-    <meta property="og:site_name" content={site.name} />
-    <meta property="og:title" content={site.title} />
-    <meta property="og:description" content={site.description} />
-    {canonical && <meta property="og:url" content={canonical} />}
-    {ogUrl && <><meta property="og:image" content={ogUrl} /><meta property="og:image:alt" content="CLUB PHOENIXの店内" /></>}
-    <meta name="twitter:card" content={ogUrl ? 'summary_large_image' : 'summary'} />
+    <Seo />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

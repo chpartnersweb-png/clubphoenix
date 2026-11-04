@@ -1,17 +1,25 @@
-const address = '大阪府茨木市末広町2-18 セカンドBOXビル 2F';
+const addressRegion = '大阪府';
+const addressLocality = '茨木市';
+const streetAddress = '末広町2-18';
+const building = 'セカンドBOXビル 2F';
+const street = `${addressRegion}${addressLocality}${streetAddress}`;
+const address = `${street} ${building}`;
 const mapQuery = encodeURIComponent(`CLUB PHOENIX ${address}`);
 
 export const site = {
   name: 'CLUB PHOENIX',
   reading: 'クラブ フェニックス',
-  title: 'CLUB PHOENIX｜大阪・茨木市駅徒歩4分のキャバクラ',
-  description: '阪急茨木市駅から徒歩4分。大阪府茨木市のCLUB PHOENIX（クラブ フェニックス）。店内の雰囲気、料金システム、アクセスをご案内します。20:00〜LAST営業。お問い合わせは072-637-3211（19時以降受付）。',
+  title: 'CLUB PHOENIX（フェニックス）｜茨木市駅徒歩4分のキャバクラ',
+  description: '大阪府茨木市のキャバクラ、CLUB PHOENIX（クラブ フェニックス）。阪急茨木市駅から徒歩4分。店内写真、1set50分の料金システム、営業時間・アクセスをご案内。20:00〜LAST営業。お電話は072-637-3211（19時以降受付）。',
   phone: '072-637-3211',
   phoneHref: 'tel:0726373211',
   phoneHours: '19時以降受付',
   address,
-  street: '大阪府茨木市末広町2-18',
-  building: 'セカンドBOXビル 2F',
+  street,
+  building,
+  addressRegion,
+  addressLocality,
+  streetAddress,
   hours: '20:00〜LAST',
   holiday: '不定休',
   holidayNote: 'お電話でご確認ください。',

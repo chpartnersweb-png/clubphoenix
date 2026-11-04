@@ -1,0 +1,105 @@
+---
+import { getImage } from 'astro:assets';
+import storePhoto from '../assets/IMG_3528.JPG';
+import { site } from '../data/site';
+import { seo } from '../config/seo.mjs';
+
+// Use a real client-supplied interior photograph to represent the business.
+const ogImage = await getImage({
+  src: storePhoto,
+  width: 1200,
+  height: 630,
+  fit: 'cover',
+  position: 'center',
+  format: 'jpg',
+  quality: 90,
+});
+const canonical = new URL(Astro.url.pathname, seo.url).href;
+const imageUrl = new URL(ogImage.src, seo.url).href;
+const imageAlt = '大阪・茨木市のCLUB PHOENIXの店内。黒いソファ席とフェニックスの壁面ロゴ。';
+const businessId = new URL('#business', seo.url).href;
+const websiteId = new URL('#website', seo.url).href;
+const imageId = `${canonical}#primaryimage`;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'EntertainmentBusiness',
+      '@id': businessId,
+      name: site.name,
+      alternateName: site.reading,
+      description: site.description,
+      url: seo.url,
+      telephone: site.phoneHref.replace(/^tel:0/, '+81'),
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: `${site.streetAddress} ${site.building}`,
+        addressLocality: site.addressLocality,
+        addressRegion: site.addressRegion,
+        addressCountry: 'JP',
+      },
+      image: { '@id': imageId },
+      logo: { '@type': 'ImageObject', url: new URL('favicon.png', seo.url).href },
+      currenciesAccepted: 'JPY',
+      hasMap: site.mapUrl,
+      sameAs: [site.instagram, site.pokepara],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: seo.url,
+      name: site.name,
+      alternateName: site.reading,
+      inLanguage: seo.language,
+      publisher: { '@id': businessId },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: site.title,
+      description: site.description,
+      inLanguage: seo.language,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': businessId },
+      mainEntity: { '@id': businessId },
+      primaryImageOfPage: { '@id': imageId },
+    },
+    {
+      '@type': 'ImageObject',
+      '@id': imageId,
+      url: imageUrl,
+      contentUrl: imageUrl,
+      caption: imageAlt,
+      width: ogImage.attributes.width,
+      height: ogImage.attributes.height,
+    },
+  ],
+};
+// Prevent text values from terminating the inline JSON-LD script element.
+const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
+---
+<title>{site.title}</title>
+<meta name="description" content={site.description} />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href={canonical} />
+<link rel="sitemap" type="application/xml" href={new URL('sitemap.xml', seo.url).href} />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={seo.locale} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={site.title} />
+<meta property="og:description" content={site.description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:secure_url" content={imageUrl} />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content={String(ogImage.attributes.width)} />
+<meta property="og:image:height" content={String(ogImage.attributes.height)} />
+<meta property="og:image:alt" content={imageAlt} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={site.title} />
+<meta name="twitter:description" content={site.description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={imageAlt} />
+<script is:inline type="application/ld+json" set:html={jsonLd}></script>
