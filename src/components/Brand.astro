@@ -1,0 +1,10 @@
+---
+import { Image } from 'astro:assets';
+import symbol from '../assets/generated/phoenix-symbol-v1.png';
+interface Props { variant?: 'compact' | 'hero' | 'footer'; }
+const { variant = 'compact' } = Astro.props;
+---
+<span class:list={['brand', `brand--${variant}`]}>
+  <Image class="brand-symbol" src={symbol} width={variant === 'hero' ? 400 : 160} format="webp" alt="" aria-hidden="true" loading={variant === 'footer' ? 'lazy' : 'eager'} />
+  <span class="brand-type"><span class="brand-club">CLUB</span><span class="brand-name">PHOENIX</span></span>
+</span>

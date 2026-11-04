@@ -1,0 +1,30 @@
+---
+import { getImage } from 'astro:assets';
+import hero from '../assets/generated/hero-night-desktop-v1.png';
+import mobileHero from '../assets/generated/hero-night-mobile-v1.png';
+import Brand from './Brand.astro';
+import { site } from '../data/site';
+const heroDesktop = await getImage({ src: hero, width: Math.min(2400, hero.width), format: 'webp', quality: 85 });
+const heroMobile = await getImage({ src: mobileHero, width: Math.min(960, mobileHero.width), format: 'webp', quality: 83 });
+---
+<section class="hero" aria-labelledby="hero-title" data-hero>
+  <div class="hero-art" data-hero-art>
+    <picture>
+      <source media="(max-width: 640px)" srcset={heroMobile.src} width={heroMobile.attributes.width} height={heroMobile.attributes.height} />
+      <img src={heroDesktop.src} width={heroDesktop.attributes.width} height={heroDesktop.attributes.height} alt="" loading="eager" fetchpriority="high" decoding="async" />
+    </picture>
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-frame" aria-hidden="true"></div>
+  <span class="hero-side hero-side--left" aria-hidden="true">OSAKA — IBARAKI</span>
+  <span class="hero-side hero-side--right" aria-hidden="true">WHERE THE NIGHT BLOOMS</span>
+  <div class="hero-center">
+    <h1 id="hero-title" data-hero-logo><span class="sr-only">CLUB PHOENIX クラブ フェニックス</span><span aria-hidden="true"><Brand variant="hero" /></span></h1>
+    <p class="hero-copy" data-hero-copy>夜に、華がひらく。</p>
+  </div>
+  <div class="hero-bottom">
+    <p>HANKYU IBARAKI-SHI <span>{site.stations[0].minutes} MIN. WALK</span></p>
+    <a class="scroll-cue" href="#space"><span>SCROLL TO DISCOVER</span><span class="scroll-line" aria-hidden="true"></span></a>
+    <p class="hero-open">OPEN <span>{site.hours.split('〜')[0]}</span> — LAST</p>
+  </div>
+</section>

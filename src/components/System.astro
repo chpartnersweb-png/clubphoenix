@@ -1,0 +1,20 @@
+---
+import { pricing, formatPrice } from '../data/pricing';
+---
+<section class="system" id="system" aria-labelledby="system-title">
+  <div class="system-paper">
+    <div class="system-top" data-reveal><div class="section-label"><span>03</span><span>SYSTEM & CHARGE</span></div><span class="system-location">CLUB PHOENIX / IBARAKI</span></div>
+    <div class="system-heading" data-reveal><h2 id="system-title">System <em>&</em> Charge</h2><p>心おきなく、夜を楽しむために。</p></div>
+    <div class="system-main" data-reveal>
+      <div class="system-set-label"><h3>セット料金</h3><span>1 SET / {pricing.setMinutes} MIN.</span></div>
+      <table class="set-table"><caption class="sr-only">1セット{pricing.setMinutes}分の通常料金</caption><tbody>{pricing.sets.map(item => <tr><th scope="row">{item.label}</th><td><span>{formatPrice(item.amount)}</span><small>円</small></td></tr>)}</tbody></table>
+    </div>
+    <div class="system-extras" data-reveal>
+      <table><caption class="sr-only">延長料金</caption><tbody>{pricing.extensions.map(item => <tr><th scope="row">{item.label}<span>（{item.duration}）</span></th><td>{formatPrice(item.amount)}<small>円</small></td></tr>)}</tbody></table>
+      <table><caption class="sr-only">指名料とビールの追加料金</caption><tbody><tr><th scope="row">指名料</th><td>{formatPrice(pricing.nomination)}<small>円</small></td></tr><tr><th scope="row">ビールフリー</th><td>＋{formatPrice(pricing.beer)}<small>円</small></td></tr></tbody></table>
+    </div>
+    <div class="system-included" data-reveal><span>INCLUDED</span><p>{pricing.included.join('・')} 飲み放題</p></div>
+    <div class="system-notes" data-reveal><p class="micro-heading">PLEASE NOTE</p><ul>{pricing.notes.map(note => <li>{note}</li>)}</ul><p>その他各種ボトルについては、男性スタッフにお問い合わせください。</p></div>
+    <span class="paper-corner" aria-hidden="true">P.</span>
+  </div>
+</section>

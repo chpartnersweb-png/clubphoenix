@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+import bar from '../assets/IMG_3530.JPG';
+import { pricing, formatPrice } from '../data/pricing';
+---
+<section class="drinks section-space" id="drink" aria-labelledby="drink-title">
+  <div class="shell drink-layout">
+    <div class="drink-visual" data-reveal><span class="vertical-caption" aria-hidden="true">A GLASS. A CONVERSATION. A GOOD NIGHT.</span><figure><div class="image-clip"><Image src={bar} alt="CLUB PHOENIXのバーカウンターと、吊り下げられたグラス、ボトル棚" width={800} format="webp" quality={90} sizes="(max-width: 760px) 90vw, 44vw" loading="lazy" /></div><figcaption>AT THE COUNTER</figcaption></figure></div>
+    <div class="drink-content">
+      <div class="section-label" data-reveal><span>02</span><span>DRINK & CONVERSATION</span></div>
+      <h2 class="jp-heading" id="drink-title" data-reveal>お好きな一杯と、<br />心ほどけるひととき。</h2>
+      <div class="drink-menu" data-reveal><p class="micro-heading">FREE FLOW</p><p class="drink-included">{pricing.included.join('・')}<br /><span>飲み放題</span></p><div class="beer-line"><span>ビールフリー</span><span>＋{formatPrice(pricing.beer)}<small>円</small></span></div></div>
+      <p class="drink-note" data-reveal>その他、各種ボトルを取り揃えております。<br />男性スタッフにお気軽にお問い合わせください。</p>
+      <a class="text-link" href="#system" data-reveal><span>料金システムを見る</span><span class="link-circle"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" stroke="currentColor" /></svg></span></a>
+    </div>
+  </div>
+</section>

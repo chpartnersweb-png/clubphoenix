@@ -1,0 +1,20 @@
+---
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+---
+<section class="access section-space" id="access" aria-labelledby="access-title">
+  <div class="shell">
+    <div class="section-label" data-reveal><span>05</span><span>ACCESS & INFORMATION</span><span class="label-line"></span></div>
+    <div class="access-heading" data-reveal><h2 id="access-title">Your night<br />starts <em>here.</em></h2><p>阪急「茨木市駅」から徒歩4分。<br />今夜は、フェニックスへ。</p></div>
+    <div class="access-layout">
+      <div class="access-information" data-reveal>
+        <p class="access-name">{site.name}<span>{site.reading}</span></p>
+        <address>{site.street}<br />{site.building}</address>
+        <dl class="info-list"><div><dt>営業時間</dt><dd>{site.hours}<small>平日・土日祝</small></dd></div><div><dt>定休日</dt><dd>{site.holiday}<small>※{site.holidayNote}</small></dd></div><div><dt>アクセス</dt><dd>{site.stations.map(station => <span class="station">{station.line}「{station.name}」<br /><span>徒歩{station.minutes}分</span></span>)}</dd></div></dl>
+        <a class="text-link" href={site.mapUrl} target="_blank" rel="noopener noreferrer"><span>Google Mapsで開く</span><Icon name="external" /><span class="sr-only">（新しいタブで開きます）</span></a>
+      </div>
+      <div class="access-map" data-reveal><iframe src={site.mapEmbed} title="CLUB PHOENIX周辺の地図（大阪府茨木市末広町2-18）" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><div class="map-caption"><Icon name="pin" /><span>大阪府茨木市末広町2-18</span><span>2F</span></div></div>
+    </div>
+    <div class="contact-band" data-reveal><div><span class="micro-heading">CONTACT US</span><h3>ご来店・空席のお問い合わせ</h3></div><a href={site.phoneHref} class="contact-phone"><span><Icon name="phone" /><span>{site.phone}</span></span><small>お電話は{site.phoneHours}</small></a></div>
+  </div>
+</section>

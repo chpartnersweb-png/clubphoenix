@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<nav class="mobile-contact" aria-label="来店のお問い合わせ">
+  <a class="mobile-contact-phone" href={site.phoneHref}><Icon name="phone" /><span>電話する<small>{site.phoneHours}</small></span><Icon name="external" /></a>
+  <a class="mobile-contact-map" href="#access"><Icon name="pin" /><span>アクセス</span></a>
+</nav>

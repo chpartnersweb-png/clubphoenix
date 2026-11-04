@@ -1,0 +1,11 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { site, navigation } from '../data/site';
+---
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-main"><a href="#top" aria-label="CLUB PHOENIX ページの先頭へ"><Brand variant="footer" /></a><nav aria-label="フッターナビゲーション">{navigation.map(item => <a href={item.href}>{item.en}</a>)}</nav><div class="footer-socials"><a href={site.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram（新しいタブで開きます）"><Icon name="instagram" /></a><a href={site.pokepara} target="_blank" rel="noopener noreferrer" aria-label="ポケパラ（新しいタブで開きます）">P</a><a class="back-top" href="#top" aria-label="ページの先頭へ"><Icon name="arrow" /></a></div></div>
+    <div class="footer-bottom"><span>OSAKA, IBARAKI — {site.name}</span><small>© {new Date().getFullYear()} CLUB PHOENIX</small></div>
+  </div>
+</footer>

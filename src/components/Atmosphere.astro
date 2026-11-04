@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import space from '../assets/IMG_3528.JPG';
+import sofa from '../assets/IMG_3529.JPG';
+import { site } from '../data/site';
+---
+<section class="atmosphere section-space" id="space" aria-labelledby="space-title">
+  <div class="shell">
+    <div class="section-label" data-reveal><span>01</span><span>THE ATMOSPHERE</span><span class="label-line"></span></div>
+    <div class="space-intro">
+      <h2 class="jp-heading" id="space-title" data-reveal>グラスを傾け、<br />会話を楽しむ夜に。</h2>
+      <div class="space-intro-copy" data-reveal><p>日常を少し離れて、<br />心ほどけるひとときを。</p><p>黒を基調とした空間に、<br />フェニックスの光がそっと浮かぶ。<br />茨木の夜を、あなたのペースで。</p></div>
+    </div>
+    <div class="space-stage">
+      <figure class="space-main" data-reveal>
+        <div class="image-clip"><Image src={space} alt="黒いソファ席と、奥にフェニックスの壁面ロゴが見えるCLUB PHOENIXの店内" width={783} format="webp" quality={90} sizes="(max-width: 640px) 90vw, 65vw" loading="lazy" /></div>
+        <figcaption><span>THE SPACE</span><span>静かな光に包まれて。</span></figcaption>
+      </figure>
+      <figure class="space-detail" data-reveal data-parallax>
+        <div class="image-clip"><Image src={sofa} alt="CLUB PHOENIXのテーブルと黒いソファ、照明付きのフェニックスのマーク" width={600} format="webp" quality={90} sizes="(max-width: 640px) 70vw, 36vw" loading="lazy" /></div>
+        <figcaption>MAKE YOURSELF AT HOME.</figcaption>
+      </figure>
+      <div class="space-seats" data-reveal><p>おひとりでも、お連れさまとも。</p><div><span>COUNTER <strong>{String(site.counterSeats).padStart(2, '0')}</strong><small>席</small></span><span>TABLES <strong>{String(site.tables).padStart(2, '0')}</strong><small>卓</small></span></div></div>
+    </div>
+  </div>
+</section>

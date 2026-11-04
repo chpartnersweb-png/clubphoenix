@@ -1,0 +1,22 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { site, navigation } from '../data/site';
+---
+<header class="site-header" data-header>
+  <a class="header-brand" href="#top" aria-label="CLUB PHOENIX ページの先頭へ"><Brand /></a>
+  <nav class="desktop-nav" aria-label="メインナビゲーション">
+    <a href="#space">ATMOSPHERE</a><a href="#system">SYSTEM</a><a href="#access">ACCESS</a>
+  </nav>
+  <div class="header-actions">
+    <a class="header-phone" href={site.phoneHref} aria-label={`${site.phone}に電話する（${site.phoneHours}）`}><Icon name="phone" /><span>{site.phone}<small>{site.phoneHours}</small></span></a>
+    <button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="メニューを開く" data-menu-open hidden><span></span><span></span><span class="menu-toggle-label">MENU</span></button>
+  </div>
+</header>
+<dialog class="site-menu" id="site-menu" aria-labelledby="menu-title" data-lenis-prevent>
+  <div class="menu-top"><p id="menu-title">CLUB PHOENIX</p><button class="menu-close" type="button" data-menu-close aria-label="メニューを閉じる"><span></span><span></span></button></div>
+  <nav aria-label="ページ内メニュー">
+    {navigation.map((item, index) => <a href={item.href}><span class="menu-number">0{index + 1}</span><span class="menu-name">{item.en}</span><span class="menu-japanese">{item.ja}</span><Icon name="external" /></a>)}
+  </nav>
+  <div class="menu-bottom"><span>OSAKA, IBARAKI<br />OPEN {site.hours}</span><a href={site.phoneHref}>{site.phone}<small>{site.phoneHours}</small></a></div>
+</dialog>
