@@ -21,8 +21,8 @@ export const site = {
   addressLocality,
   streetAddress,
   hours: '20:00〜LAST',
-  holiday: '不定休',
-  holidayNote: 'お電話でご確認ください。',
+  holiday: '日曜日',
+  holidayNote: '月曜日が祝日の場合は日曜日営業します',
   counterSeats: 4,
   tables: 10,
   stations: [
